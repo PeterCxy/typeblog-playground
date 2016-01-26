@@ -1,0 +1,15 @@
+{
+  "name": "typeblog-playground",
+  "version": "1.0.0",
+  "description": "Just my playground",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "lsc -co lib src && node index.js"
+  },
+  "author": "Peter Cai",
+  "license": "GPL-3.0",
+  "dependencies": {
+    "express": "^4.13.4"
+  }
+}
