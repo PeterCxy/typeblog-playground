@@ -14,6 +14,8 @@ exports.init = ->
   wasuApp = express()
   wasuApp.get "/url/for/:url", shorten.url
   wasuApp.get "/:id([#{shorten.alphabet}]{4,4})", shorten.entry
+  wasuApp.get "/", (req, res) ->
+    res.redirect 301, 'https://typeblog.net/short-url/'
 
   # Listen
   server = express()
