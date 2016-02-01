@@ -3,10 +3,7 @@ MAINTAINER Peter Cai "peter@typeblog.net"
 
 # Update the base image and install nodejs
 RUN pacman -Syu --noconfirm
-RUN pacman -S nodejs npm --noconfirm
-
-# Install needed LiveScript
-RUN npm install -g livescript
+RUN pacman -S nodejs npm coffee-script --noconfirm
 
 # Copy to workdir
 WORKDIR /usr/src/peter
