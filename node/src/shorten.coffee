@@ -32,7 +32,7 @@ do async ->
 
 exports.alphabet = alphabet
 exports.url = (req, res) ->
-  url = req.params.url.replace '%2F', '/'
+  url = decodeURIComponent req.originalUrl.replace '/url/for/', ''
   if validate url
     id = put url
 
