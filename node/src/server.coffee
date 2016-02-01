@@ -1,5 +1,6 @@
 express = require 'express'
 splash = require './splash'
+shorten = require './shorten'
 
 exports.init = ->
   # misc.typeblog.net
@@ -9,11 +10,18 @@ exports.init = ->
       res.sendStatus req.params.code
   miscApp.get '/splash', splash.entry
 
+  # wasu.pw (url shortening)
+  wasuApp = express()
+  wasuApp.get "/url/for/:url", shorten.url
+  wasuApp.get "/:id([#{shorten.alphabet}]{4,4})", shorten.entry
+
   # Listen
   server = express()
   server.use (req, res, next) ->
     switch req.hostname
       when 'misc.typeblog.net', '127.0.0.1'
         miscApp.handle req, res, next
+      when 'wasu.pw', '127.0.0.2'
+        wasuApp.handle req, res, next
       else res.sendStatus 404
   .listen 8080
