@@ -1,6 +1,9 @@
 FROM base/archlinux:2015.06.01
 MAINTAINER Peter Cai "peter@typeblog.net"
 
+# Set the mirror
+RUN echo 'Server = http://mirror.rackspace.com/archlinux/$repo/os/$arch' > /etc/pacman.d/mirrorlist
+
 # Update the base image and install nodejs
 RUN pacman -Syu --noconfirm
 RUN pacman -S nodejs npm coffee-script --noconfirm
