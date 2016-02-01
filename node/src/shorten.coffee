@@ -33,7 +33,7 @@ do async ->
 exports.alphabet = alphabet
 exports.url = (req, res) ->
   url = req.params.url.replace '%2F', '/'
-  if url.match(require './url_pattern')?
+  if validate url
     id = put url
 
     if id isnt BOOM
@@ -56,6 +56,10 @@ exports.entry = (req, res) ->
     res.redirect 302, url
   else
     res.sendStatus 404
+
+validate = (url) ->
+  return url.match(require './url_pattern')? &&
+    !url.match(/^https?:\/\/(wasu\.pw|t\.cn|goo\.gl|bit\.ly|ow\.ly|t\.co|bit\.do|tr\.im|bam\.bz)/)?
 
 put = (url) ->
   if url.length >= 500
