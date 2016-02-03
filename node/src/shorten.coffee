@@ -32,6 +32,11 @@ do async ->
 
 exports.alphabet = alphabet
 exports.url = (req, res) ->
+  if !req.body.url?
+    res.json
+      success: false
+      message: 'Please specify a URL'
+
   url = req.body.url.trim()
   if validate url
     id = put url
