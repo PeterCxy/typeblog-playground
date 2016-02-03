@@ -32,20 +32,20 @@ do async ->
 
 exports.alphabet = alphabet
 exports.url = (req, res) ->
-  url = decodeURIComponent(req.params.url).trim()
+  url = req.body.url.trim()
   if validate url
     id = put url
 
     if id isnt BOOM
-      res.jsonp
+      res.json
         success: true
         url: "https://wasu.pw/#{id}"
     else
-      res.jsonp
+      res.json
         success: false
         message: 'Too long!'
   else
-    res.jsonp
+    res.json
       success: false
       message: 'Invalid URL'
 
